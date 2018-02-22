@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Activity 5: the audio tag + events</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        
+      .controls div{
+        float: left;
+        margin: 10px;
+        border: 3px solid #000;
+        font-size: 2em;
+        text-align: center;
+        width: 50px;
+        border-radius: 5px;
+      }
+        
+        #playList {
+            list-style: none;
+        }
+        
+        #playList li a {
+            color: green;
+            text-decoration: none;
+        }
+        
+        #playList .cancion-actual a{
+            color: blue; 
+            font-weight: bold;
+        }
+        
+        
+    </style>
+  </head>
+  <body>
+    <h1>Activity 5: the audio tag + events</h1>
+    <p>This is a music player with a playlist</p>
+    <ul>
+      <li>Add a play icon to the item in the playlist that is currently playing.</li>
+      <li>Add controls to <a href="https://developer.mozilla.org/es/docs/Web/HTML/Elemento/audio">audio tag</a>: play/pause, go back, go forward.</li>
+      <li>When 1 audio ends the following one must estart playing automatically</li>
+    </ul>
+    
+    <ol id="playList">
+      <li class="cancion-actual"><a href="Warriors.mp3">Imagine Dragons - Warriors</a></li>
+      <li><a href="Believer.mp3">Imagine Dragons - Believer</a></li>
+      <li><a href="Battle%20Cry%20Transformers%20Age%20of%20Extinction.mp3">Imagine Dragons - Battle Cry Transformers Age of Extinction</a></li>
+    </ol>
+    <audio src="" controls hidden id="audioPlayer"></audio>
+    <div class="controls">
+        <div class="play" id="play"><i class="fa fa-play"></i></div>
+        <div class="pause" id="pause"><i class="fa fa-pause"></i></div>
+        <div class="backward" id="backward"><i class="fa fa-step-backward"></i></div>
+        <div class="fordward" id="fordward"><i class="fa fa-step-forward"></i></div>
+    </div>
+      <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+      <script>
+          
+        audioPlayer();   
+        
+          
+        function audioPlayer(){
+            var cancionActual = 0;
+            
+            $("#audioPlayer")[0].src = $("#playList li a")[0];
+            
+            $("#playList li a").click(function(event){
+                event.preventDefault();
+                $("#audioPlayer")[0].src = this;
+                $("#audioPlayer")[0].play();
+                $("#playList li").removeClass("cancion-actual");
+                currentSong = $(this).parent().index();
+                $(this).parent().addClass("cancion-actual");
+            }); 
+            // al realizar click en el enlace siga en la misma pagina y ejecute el sonido del index seleccionado
+            
+            $("#audioPlayer")[0].addEventListener("ended", function(){
+                cancionActual++;
+                if(cancionActual == $("#playList li a").length){
+                   cancionActual = 0;
+                }
+                
+                $("#playList li").removeClass("cancion-actual");
+                $("#playList li:eq("+cancionActual+")").addClass("cancion-actual");
+                $("#playList li:eq("+cancionActual+")").innerHTML += "<i class=\"fa fa-play\"></i>";
+                //selecciona un elemento con un número de índice específico. jQuery li:eq(index)
+                
+                $("#audioPlayer")[0].src = $("#playList li a")[cancionActual].href;
+                $("#audioPlayer")[0].play();
+                
+            });
+            
+            document.getElementById("fordward").addEventListener("click", function(){
+                cancionActual++;
+                if(cancionActual == $("#playList li a").length){
+                   cancionActual = 0;
+                }
+                
+                $("#playList li").removeClass("cancion-actual");
+                $("#playList li:eq("+cancionActual+")").addClass("cancion-actual");
+                //selecciona un elemento con un número de índice específico. jQuery li:eq(index)
+                
+                $("#audioPlayer")[0].src = $("#playList li a")[cancionActual].href;
+                $("#audioPlayer")[0].play();
+                                
+            });
+            
+            document.getElementById("backward").addEventListener("click", function(){
+                cancionActual--;
+                if(cancionActual < 0){
+                   cancionActual = $("#playList li a").length-1;
+                }
+                
+                $("#playList li").removeClass("cancion-actual");
+                $("#playList li:eq("+cancionActual+")").addClass("cancion-actual");
+                //selecciona un elemento con un número de índice específico. jQuery li:eq(index)
+                
+                $("#audioPlayer")[0].src = $("#playList li a")[cancionActual].href;
+                $("#audioPlayer")[0].play();
+            });
+            
+            document.getElementById("play").addEventListener("click", function(){
+                $("#audioPlayer")[0].play();
+            });
+            
+            document.getElementById("pause").addEventListener("click", function(){
+                $("#audioPlayer")[0].pause();
+            });
+
+        }    
+        
+      </script>
+  </body>
+</html>

@@ -1,15 +1,30 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Activity 2: Change the image</title>
   </head>
   <body>
     <h1>Activity 2: Change the image</h1>
     <p>Change the following image with changed.png only if changed.png exists in the server</p>
-    <img src="./default.png" alt="just an image">
+    <img id="defecto" src="default.png" alt="just an image" align="center">
+    <img id="imagen" src="" width="50px" height="50px" align="center">
+
+    <script type="text/javascript">
+
+    $.ajax({
+      url: "changed.png",
+      error: function(){
+        $("#imagen").attr("src", "equis.png");
+      },
+      success: function(){
+        $("#imagen").attr("src", "checked.png");
+      }
+    });
+
+    </script>
   </body>
 </html>

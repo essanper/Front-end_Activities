@@ -4,8 +4,18 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style type="text/css">
 
+      #generar{
+        border-style: collapse;
+      }
+
+    </style>
     <title>Activity 3: Forms &amp; click event</title>
+    <script type="text/javascript">
+
+
+    </script>
   </head>
   <body>
     <h1>Activity 3: Forms &amp; click event</h1>
@@ -15,5 +25,41 @@
         <li>Add a table with as many rows and columns both Rows and Columns fields indicate</li>
         <li>Each table cell must contain a text like: "Row: X, Col: Y"</li>
       </ol>
+      <table>
+      <tr><td>Columnas</td><td><input type="number" name="column" id="column"></td></tr>
+       <tr><td>Filas</td><td><input type="number" name="rows" id="rows"></td></tr>
+       
+       <tr><td colspan="2" align="center"><input type="submit" name="dibujar" value="DIBUJAR" id="boton"></td></tr>
+    </table>
+    <br><br>
+    <div id="pintameLaTablaJS"></div>
+        <script type="text/javascript">
+
+          function generarTabla(){
+
+            if(document.getElementById("rows").value > 0 && document.getElementById("column").value > 0){
+              var tabla = "<table border=\"1px solid black\" >";
+
+              for (var i = 0; i < document.getElementById("rows").value; i++) {
+               tabla += "<tr>";
+
+                for (var j = 0; j < document.getElementById("column").value; j++) {
+                  tabla += "<td>row: "+i+ ", col:"+j+"</td>";
+                }
+
+                tabla += "</tr>";
+              }
+
+              tabla += "</table>";
+
+              document.getElementById("pintameLaTablaJS").innerHTML = tabla;
+            }else{
+              document.getElementById("pintameLaTablaJS").innerHTML = "Las columnas y/o filas deben ser mayor a cero";
+            }
+
+          }
+
+          document.getElementById("boton").addEventListener("click", generarTabla);
+        </script>
   </body>
 </html>

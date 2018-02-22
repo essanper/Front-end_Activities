@@ -1,0 +1,153 @@
+    	.bloquerojo, .bloquenaranja, .bloqueverde, .bloqueblanco {
+        margin: 10px;
+        width: 120px; 
+        height: 40px; 
+        border: 1px solid black; 
+        border-style: collapse; 
+        border-radius: 10px; 
+        display: inline-block;
+        text-align: center;
+      }
+
+
+       .bloqueblanco{
+        visibility: hidden;
+      }
+
+      .bloquerojo{
+        background-color: red;
+      }
+
+      .bloquenaranja{
+        background-color: orange;
+      }
+
+      .bloqueverde{
+        background-color: green;
+      }
+
+      #matriz {
+        margin-top: 60px;
+      }
+
+      #matriz tr td {
+
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        border:1px solid black;
+      }
+
+      #base {
+        position: absolute;
+        width: 150px; height: 30px;
+        border-radius: 25px;
+        display: block;
+        bottom: 0; right: 45%;
+
+      }
+
+      #bola{
+        position: absolute;
+        border-radius: 30px;
+        height: 20px; width: 20px;
+        bottom: 3%; right: 50%;
+        display: block;
+      }
+
+      #juego{
+        position: absolute;
+        background: url("../assets/escenario.jpg");
+        background-repeat: repeat;
+        position: relative;
+        width:1270px; 
+        height:750px;
+        border:1px solid gray;
+        box-shadow:0px 0px 20px gray inset;
+        border-radius:20px;
+        overflow: hidden;
+        display: block;
+      }
+
+      #imgBase, #imgBola {
+        width: 100%;
+        height: 100%;
+      }
+
+      #celda{
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+      }
+
+      .press {
+        position:absolute; 
+        top:10%; 
+        left:25%; 
+        width:200px; 
+        height:200px; 
+      }
+
+      .gameOver {
+        position:absolute; 
+        top:10%; 
+        left:25%; 
+        width:200px; 
+        height:200px; 
+      }
+
+      .menu{
+        color:#FFFFFF;
+        background: url("../assets/escenario.jpg");
+        background-repeat: repeat;
+        position: relative;
+        left:1280px; top: -750px;
+        width: 370px;
+        border: 1px solid black;
+        font-family:Verdana; 
+        font-size:16px;
+        padding: 10px; 
+        border-radius:20px;
+        font-weight: bold;
+
+      }
+
+      .TodosLosPuntos{
+        color:#FFFFFF;
+        background: url("../assets/escenario.jpg");
+        background-repeat: repeat;
+        position: relative;
+        left:1280px; top: -740px;
+        border: 1px solid black;
+        width: 160px;
+        font-family:Verdana; 
+        font-size:16px;
+        padding: 10px; 
+        border-radius:20px;
+        font-weight: bold;
+
+      }
+
+      .misPuntos{
+        color:#FFFFFF;
+        background: url("../assets/escenario.jpg");
+        background-repeat: repeat;
+        position: relative;
+        left:1470px; top: -895px;
+        border: 1px solid black;
+        width: 180px;
+        font-family:Verdana; 
+        font-size:16px;
+        padding: 10px; 
+        border-radius:20px;
+        font-weight: bold;
+
+      }
+
+      #puntos, #puntosGanados{
+        font-weight: bold;
+        color:#FFFFFF;
+        font-family:Verdana; 
+        font-size:30px;
+        text-align: center;
+      }
